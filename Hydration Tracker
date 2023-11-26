@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hydration Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+      background-color: #f0f0f0; /* Previous background color */
+    }
+    .container {
+      text-align: center;
+      margin: 0 auto;
+      max-width: 400px;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      background-color: #c59b9b; /* Inner background color */
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+    }
+    .counter {
+      font-size: 48px;
+      margin: 0 20px;
+    }
+    .button-container {
+      margin-top: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 18px;
+      cursor: pointer;
+      border: none;
+      background-color: #804d4d; /* Button color */
+      color: white;
+      border-radius: 4px;
+      margin-right: 10px; /* Space between buttons */
+    }
+    button:hover {
+      background-color: #9e6666; /* Button hover color */
+    }
+    .emoji-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+      font-size: 30px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Hydration Tracker</h1>
+    <p>Daily Hydration Counter:</p>
+    <div class="counter" id="counter">0</div>
+    <div class="button-container">
+      <button onclick="drinkWater()">Drink Water</button>
+      <button onclick="resetCounter()">Reset Counter</button>
+    </div>
+    <div class="emoji-container" id="emoji-container"></div>
+  </div>
+
+  <script>
+    let waterCount = 0;
+
+    function drinkWater() {
+      waterCount += 1;
+      document.getElementById('counter').innerText = waterCount;
+      addEmoji('💧');
+    }
+
+    function addEmoji(emoji) {
+      const emojiContainer = document.getElementById('emoji-container');
+      const newEmoji = document.createElement('span');
+      newEmoji.innerHTML = emoji;
+      emojiContainer.appendChild(newEmoji);
+    }
+
+    function resetCounter() {
+      waterCount = 0;
+      document.getElementById('counter').innerText = waterCount;
+      document.getElementById('emoji-container').innerHTML = ''; // Clear emojis
+    }
+  </script>
+</body>
+</html>
