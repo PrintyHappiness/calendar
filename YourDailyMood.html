@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Günlük Mod</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: 50px;
+    }
+    .frame {
+      margin: 0 auto;
+      max-width: 400px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      padding: 20px;
+      background-color: #f0f0f0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .emojis {
+      font-size: 48px;
+    }
+    .emojis span {
+      cursor: pointer;
+      margin: 0 10px;
+      opacity: 0.5; /* Diğer emojileri soluk yapmak için opaklık */
+      transition: opacity 0.3s ease; /* Geçiş efekti */
+    }
+    .emojis span.selected {
+      opacity: 1; /* Seçilen emojinin opaklığını tam yapmak */
+    }
+  </style>
+</head>
+<body>
+  <div class="frame">
+    <h2>Your Daily Mood</h2>
+    <div class="emojis">
+      <span onclick="selectEmoji('mutluluk', this)">&#x1F60A;</span> <!-- Mutluluk emoji -->
+      <span onclick="selectEmoji('üzgün', this)">&#x1F614;</span> <!-- Üzgün emoji -->
+      <span onclick="selectEmoji('kızgın', this)">&#x1F620;</span> <!-- Kızgın emoji -->
+      <span onclick="selectEmoji('duygusal', this)">&#x1F62D;</span> <!-- Duygusal emoji -->
+    </div>
+  </div>
+
+  <script>
+    function selectEmoji(mood, element) {
+      const emojis = document.querySelectorAll('.emojis span');
+      emojis.forEach(emoji => {
+        emoji.classList.remove('selected');
+      });
+      element.classList.add('selected');
+      // alert('Seçilen mod: ' + mood);
+    }
+  </script>
+</body>
+</html>
