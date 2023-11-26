@@ -4,26 +4,27 @@
   <meta charset="UTF-8">
   <title>Hydration Tracker</title>
   <style>
+    /* CSS stilleri */
     body {
       font-family: Arial, sans-serif;
       text-align: center;
       margin-top: 5px;
     }
     .container {
-     text-align: center;
-  margin: 0 auto;
-  padding: 20px;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  background-color: #e7d0d0;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  width: 300px; /* Genişlik */
-  height: 220px; /* Yükseklik */
+      text-align: center;
+      margin: 0 auto;
+      padding: 20px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      background-color: #e7d0d0;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      width: 300px; /* Genişlik */
+      height: 220px; /* Yükseklik */
     }
     h1 {
       color: #333;
-  font-size: 20px; /* Buradaki değeri istediğiniz boyuta göre ayarlayabilirsiniz */
-  margin-bottom: 5px;
+      font-size: 20px; /* Buradaki değeri istediğiniz boyuta göre ayarlayabilirsiniz */
+      margin-bottom: 5px;
     }
     .counter {
       font-size: 35px;
@@ -49,6 +50,8 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      flex-wrap: wrap; /* Yeni satıra geçmesini sağlar */
+      gap: 5px; /* Emoji arasındaki boşluk */
       margin-top: 20px;
       font-size: 30px;
     }
@@ -70,16 +73,20 @@
     let waterCount = 0;
 
     function drinkWater() {
-      waterCount += 1;
-      document.getElementById('counter').innerText = waterCount;
-      addEmoji('💧');
+      if (waterCount < 7) {
+        waterCount += 1;
+        document.getElementById('counter').innerText = waterCount;
+        addEmoji('💧');
+      }
     }
 
     function addEmoji(emoji) {
       const emojiContainer = document.getElementById('emoji-container');
-      const newEmoji = document.createElement('span');
-      newEmoji.innerHTML = emoji;
-      emojiContainer.appendChild(newEmoji);
+      if (waterCount <= 7) {
+        const newEmoji = document.createElement('span');
+        newEmoji.innerHTML = emoji;
+        emojiContainer.appendChild(newEmoji);
+      }
     }
 
     function resetCounter() {
