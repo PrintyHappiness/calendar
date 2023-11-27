@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Su İçme Alışkanlığı</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #f0f0f0;
+      margin-top: 50px;
+    }
+    .container {
+      width: 300px;
+      margin: 0 auto;
+      background-image: url('https://i.pinimg.com/originals/fc/71/67/fc716769c69a137f390a66fa5694ea2a.jpg');
+      background-size: cover;
+      background-position: center center;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+      position: relative;
+    }
+    h2 {
+      color: white;
+    }
+    .water-container {
+      width: 200px;
+      height: 300px;
+      border: 2px solid #fff;
+      margin: 20px auto;
+      position: relative;
+      border-radius: 5px;
+      overflow: hidden;
+    }
+  .water-fill {
+  width: 100%;
+  background-color: rgba(238, 232, 170, 0.5); /* Şeffaf sarı renk */
+  height: 0;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  transition: height 0.3s;
+}
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #fff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #eee;
+    }
+    .completion-message {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: white;
+      font-size: 18px;
+      display: none;
+    }
+    .confetti {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background-color: #f00; /* Konfeti rengi */
+      border-radius: 50%;
+      z-index: 1;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Su İçtin mi?</h2>
+    <div class="water-container">
+      <div class="water-fill" id="water-fill"></div>
+    </div>
+    <button onclick="drinkWater()">Su İç</button>
+    <div class="completion-message" id="completion-message">Harika! Günlük su ihtiyacını tamamladın!</div>
+  </div>
+
+  <script>
+    let waterLevel = 0;
+    const maxLevel = 300; // Maksimum su seviyesi (px)
+    let drinkCount = 0;
+    let clickCount = 0;
+
+    function drinkWater() {
+      waterLevel += 30; // Su içme miktarı
+      clickCount++;
+      if(clickCount !== 1 && clickCount%10===1)
+      {
+        waterLevel = 0;
+          drinkCount = 0;
+          clickCount = 0;
+          document.getElementById('water-fill').style.height = `${waterLevel}px`;
+          document.getElementById('completion-message').style.display = 'none';
+      }
+      if (waterLevel > maxLevel) {
+        waterLevel = maxLevel;
+      }
+
+      document.getElementById('water-fill').style.height = `${waterLevel}px`;
+
+      if (waterLevel === maxLevel) {
+        document.getElementById('completion-message').style.display = 'block';
+        drinkCount++;
+
+        //setTimeout(() => {
+          //waterLevel = 0;
+          //drinkCount = 0;
+          //document.getElementById('water-fill').style.height = `${waterLevel}px`;
+          //document.getElementById('completion-message').style.display = 'none';
+        //}, 2000);
+
+        if (drinkCount === 10) {
+          burstConfetti();
+        }
+      }
+    }
+
+    function burstConfetti() {
+      for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.classList.add('confetti');
+        confetti.style.left = `${Math.random() * 100}vw`;
+        confetti.style.animationDuration = `${Math.random() * 2 + 1}s`;
+        confetti.style.animationDelay = `${Math.random() * 2}s`;
+        document.body.appendChild(confetti);
+
+        setTimeout(() => {
+          confetti.remove();
+        }, 2000);
+      }
+    }
+  </script>
+</body>
+</html>
