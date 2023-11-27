@@ -5,7 +5,7 @@
   <title>Günlük Mod</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: Trebuchet MS, sans-serif;
       text-align: center;
       margin-top: 50px;
     }
@@ -19,7 +19,7 @@
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
     h2 {
-      font-size: 24px; /* Başlık boyutu */
+      font-size: 19px; /* Başlık boyutu */
     }
     .emojis {
       font-size: 35px;
@@ -219,27 +219,29 @@
     let showMotivationMessage;
 
   function selectEmoji(mood, element) {
-    const emojis = document.querySelectorAll('.emojis span');
-    emojis.forEach(emoji => {
-      emoji.classList.remove('selected');
-    });
-    element.classList.add('selected');
-    
-    const messageContainer = document.getElementById('motivation-message');
-    messageContainer.style.display = 'none';
-    
-    const messages = motivationMessages[mood];
-    if (messages) {
-      const randomIndex = Math.floor(Math.random() * messages.length);
-      messageContainer.textContent = messages[randomIndex];
-      messageContainer.style.display = 'block';
-    }
-
-    clearTimeout(showMotivationMessage);
-    showMotivationMessage = setTimeout(() => {
-      messageContainer.style.display = 'none';
-    }, 5000);
+  const emojis = document.querySelectorAll('.emojis span');
+  emojis.forEach(emoji => {
+    emoji.classList.remove('selected');
+  });
+  element.classList.add('selected');
+  
+  const messageContainer = document.getElementById('motivation-message');
+  messageContainer.style.display = 'none';
+  
+  const messages = motivationMessages[mood];
+  if (messages) {
+    const randomIndex = Math.floor(Math.random() * messages.length);
+    messageContainer.textContent = messages[randomIndex];
+    messageContainer.style.color = colors[randomIndex % colors.length]; // Renkleri sırayla atama
+    messageContainer.style.display = 'block';
   }
+
+  clearTimeout(showMotivationMessage);
+  showMotivationMessage = setTimeout(() => {
+    messageContainer.style.display = 'none';
+  }, 5000);
+}
+
   </script>
 </body>
 </html>
