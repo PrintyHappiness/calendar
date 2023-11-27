@@ -10,9 +10,9 @@
       margin-top: 50px;
     }
     .container {
-      width: 300px;
+      width: 250px;
       margin: 0 auto;
-      background-image: url('https://i.pinimg.com/originals/fc/71/67/fc716769c69a137f390a66fa5694ea2a.jpg');
+      background-image: url('https://i.pinimg.com/564x/35/e7/6f/35e76f85921d613cab9c20699c4ddf9b.jpg');
       background-size: cover;
       background-position: center center;
       padding: 20px;
@@ -24,17 +24,17 @@
       color: white;
     }
     .water-container {
-      width: 200px;
-      height: 300px;
+      width: 130px;
+      height: 200px;
       border: 2px solid #fff;
       margin: 20px auto;
       position: relative;
       border-radius: 5px;
       overflow: hidden;
     }
-  .water-fill {
+.water-fill {
   width: 100%;
-  background-color: rgba(238, 232, 170, 0.5); /* Şeffaf sarı renk */
+  background-color: rgba(135, 206, 250, 0.5); /* Şeffaf açık mavi renk */
   height: 0;
   position: absolute;
   bottom: 0;
@@ -48,6 +48,7 @@
       border: none;
       border-radius: 5px;
       cursor: pointer;
+       background-color: rgba(255, 255, 255); /* Şeffaf açık mavi renk */
       transition: background-color 0.3s;
     }
     button:hover {
@@ -74,22 +75,22 @@
 </head>
 <body>
   <div class="container">
-    <h2>Su İçtin mi?</h2>
+    <h2>Did you drink water?</h2>
     <div class="water-container">
       <div class="water-fill" id="water-fill"></div>
     </div>
-    <button onclick="drinkWater()">Su İç</button>
-    <div class="completion-message" id="completion-message">Harika! Günlük su ihtiyacını tamamladın!</div>
+    <button onclick="drinkWater()">I drank a glass of water</button>
+    <div class="completion-message" id="completion-message">Great! You have completed your daily water needs!</div>
   </div>
 
   <script>
     let waterLevel = 0;
-    const maxLevel = 300; // Maksimum su seviyesi (px)
+    const maxLevel = 200; // Maksimum su seviyesi (px)
     let drinkCount = 0;
     let clickCount = 0;
 
     function drinkWater() {
-      waterLevel += 30; // Su içme miktarı
+      waterLevel += 20; // Su içme miktarı
       clickCount++;
       if(clickCount !== 1 && clickCount%10===1)
       {
