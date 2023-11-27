@@ -216,6 +216,30 @@
         messageContainer.style.display = 'block';
       }
     }
+    let showMotivationMessage;
+
+  function selectEmoji(mood, element) {
+    const emojis = document.querySelectorAll('.emojis span');
+    emojis.forEach(emoji => {
+      emoji.classList.remove('selected');
+    });
+    element.classList.add('selected');
+    
+    const messageContainer = document.getElementById('motivation-message');
+    messageContainer.style.display = 'none';
+    
+    const messages = motivationMessages[mood];
+    if (messages) {
+      const randomIndex = Math.floor(Math.random() * messages.length);
+      messageContainer.textContent = messages[randomIndex];
+      messageContainer.style.display = 'block';
+    }
+
+    clearTimeout(showMotivationMessage);
+    showMotivationMessage = setTimeout(() => {
+      messageContainer.style.display = 'none';
+    }, 5000);
+  }
   </script>
 </body>
 </html>
