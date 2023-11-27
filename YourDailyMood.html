@@ -11,46 +11,172 @@
     }
     .frame {
       margin: 0 auto;
-      max-width: 400px;
+      max-width: 250px; /* Çerçevenin genişliği */
       border: 2px solid #ccc;
       border-radius: 8px;
-      padding: 20px;
+      padding: 10px; /* İç boşluk */
       background-color: #f0f0f0;
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     }
+    h2 {
+      font-size: 24px; /* Başlık boyutu */
+    }
     .emojis {
-      font-size: 48px;
+      font-size: 35px;
     }
     .emojis span {
       cursor: pointer;
-      margin: 0 10px;
+      margin: 0 0px;
       opacity: 0.5; /* Diğer emojileri soluk yapmak için opaklık */
       transition: opacity 0.3s ease; /* Geçiş efekti */
     }
     .emojis span.selected {
       opacity: 1; /* Seçilen emojinin opaklığını tam yapmak */
     }
+    .motivation-message {
+      display: none;
+      margin-top: 20px;
+      font-style: italic;
+    }
   </style>
 </head>
 <body>
   <div class="frame">
-    <h2>Your Daily Mood</h2>
+    <h2>Today's Mood</h2>
     <div class="emojis">
       <span onclick="selectEmoji('mutluluk', this)">&#x1F60A;</span> <!-- Mutluluk emoji -->
       <span onclick="selectEmoji('üzgün', this)">&#x1F614;</span> <!-- Üzgün emoji -->
       <span onclick="selectEmoji('kızgın', this)">&#x1F620;</span> <!-- Kızgın emoji -->
       <span onclick="selectEmoji('duygusal', this)">&#x1F62D;</span> <!-- Duygusal emoji -->
     </div>
+    <div class="motivation-message" id="motivation-message"></div>
   </div>
 
   <script>
+    const motivationMessages = {
+      'mutluluk': [
+        "Life is too short to worry about matching socks.",
+"Never trust someone who doesn't like avocados.",
+"If a pigeon gives you advice, listen carefully.",
+"Always carry a banana in case of spontaneous monkey encounters.",
+"Embrace your inner child, especially during grocery shopping.",
+"Remember, unicorns might be real somewhere.",
+"Laugh loudly even if it scares the neighbors.",
+"Be the reason someone believes in aliens.",
+"Dance like no one's watching, especially the cat.",
+"Believe in yourself, unless you're trying to do karaoke.",
+"Always keep a smile handy in case of emergencies.",
+"Never underestimate the power of a well-timed pun.",
+"Buy more books than you'll ever have time to read.",
+"Glitter is the herpes of the craft world—use it wisely.",
+"Find joy in the small things, like finding money in your pocket.",
+"Be yourself; everyone else is taken, for better or worse.",
+"Exercise? I thought you said 'extra fries'.",
+"Never skip a chance to eat cake for breakfast.",
+"Always remember to feed your dreams, they get hungry too.",
+"Be so happy that when others look at you, they become happy too.",
+"Life is short; smile while you still have teeth.",
+"Remember, chocolate never asks silly questions; chocolate understands.",
+"Go the extra mile; it's never crowded there.",
+"Sing in the shower, dance in the kitchen, live in the moment.",
+"Life's a bowl of cherries, especially on a sundae.",
+"Never take yourself too seriously; no one else does.",
+"Always keep an extra pair of sunglasses for spontaneous coolness.",
+"Follow your dreams, but take your sense of humor along too.",
+"Never forget: You're someone's reason to smile, maybe a cat's."
+      ],
+      'kızgın': [
+        "You'll get through this tough time.",
+"Everything will work out in the end.",
+"Stay calm, you're in control.",
+"Challenges reveal your strength.",
+"Difficulties build new strengths within you.",
+"This is an opportunity to showcase your resilience.",
+"Just another obstacle on the road to success.",
+"You have the power to solve problems.",
+"This too shall pass.",
+"You can overcome this.",
+"This can't hinder your success.",
+"Believe in yourself, you can handle anything.",
+"Defeat is just a step towards success.",
+"Challenges make you stronger.",
+"There's a solution to every problem.",
+"Take a step back, move two steps forward.",
+"Anger is just an emotion, you're in control.",
+"You're stronger; you can overcome this.",
+"It's just a pause, the journey continues.",
+"Now is the time to demonstrate your strength.",
+"Redirect the energy of anger into a positive direction.",
+"You always come back stronger.",
+"Unleash the power within you.",
+"Negativity is a step towards greater achievement.",
+"Challenges make you a better person.",
+"Challenges bring out your potential.",
+"A stronger you can overcome challenges.",
+"Failure is a path to bigger success.",
+"Remember, facing challenges makes you stronger.",
+"Believe in yourself, you can conquer anything.",
+"There's always a way out in life.",
+"Now is the time to create a stronger you.",
+"Your confidence will help you conquer challenges.",
+"Every situation is an opportunity for growth.",
+"It's time to show your determination.",
+"Tough moments enhance your resilience.",
+"Great minds turn challenges into opportunities.",
+"A better version of yourself can tackle this challenge.",
+"Challenges display your strength.",
+"Self-awareness is the key to overcoming any situation."
+      ],
+      'duygusal': [
+        "Every new day brings hope and opportunities.",
+"Life is filled with small meanings that shine in dark days.",
+"Feeling your own emotions is a sign of real strength.",
+"Each emotion reflects the spiritual depths of a person.",
+"Take time today to understand, listen to your emotions.",
+"A broken heart is a sign of once having the ability to love.",
+"Speak positively about yourself; your inner voice listens.",
+"Take a step towards your emotional healing.",
+"Finding emotional balance increases inner peace.",
+"Emotions are a part of human connection.",
+"Embark on an emotional journey today, discover your inner world.",
+"Feeling comfortable is about valuing your emotions.",
+"Emotional challenges make us stronger and more flexible.",
+"Each emotion reflects a person's sensitivity.",
+"Be your emotional guide, listen to your inner voice.",
+"Remember, there are many treasures within your emotions.",
+"Emotional challenges are opportunities for inner growth.",
+"Inner peace is the key to balancing your emotions.",
+"Being emotionally open is a natural part of being human.",
+"Each emotion tells a story; listen to and learn from them.",
+"Allowing yourself to feel is a sign of being human.",
+"Strengthen your mental power with emotional openness.",
+"Discover your inner strength by increasing your emotional awareness.",
+"An emotional wave is part of the journey in your soul's waters.",
+"Expressing yourself showcases your inner strength.",
+"Remember, each of your emotions is a teacher.",
+"Emotional moments deepen human connections.",
+"An emotional day can be an opportunity for inner growth.",
+"Be brave on your emotional journey; each step takes you forward.",
+"Remember, your emotions are a gift that makes you human."
+      ]
+    };
+
     function selectEmoji(mood, element) {
       const emojis = document.querySelectorAll('.emojis span');
       emojis.forEach(emoji => {
         emoji.classList.remove('selected');
       });
       element.classList.add('selected');
-      // alert('Seçilen mod: ' + mood);
+      
+      const messageContainer = document.getElementById('motivation-message');
+      messageContainer.style.display = 'none';
+      
+      const messages = motivationMessages[mood];
+      if (messages) {
+        const randomIndex = Math.floor(Math.random() * messages.length);
+        messageContainer.textContent = messages[randomIndex];
+        messageContainer.style.display = 'block';
+      }
     }
   </script>
 </body>
