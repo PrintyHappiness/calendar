@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Click for Healthy Breakfast and Snack Suggestion!</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin-top: center;
+    }
+    .container {
+      max-width: 200px;
+      margin: 0 auto;
+      padding: 80px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      background-image: url('https://i.pinimg.com/564x/38/ab/f5/38abf5bcb8a5dcd5e9c776e904d92f88.jpg');
+      background-size: cover;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333;
+      font-size: 20px;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 14px;
+      background-color: #4a804d;
+      border: none;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    button:hover {
+      background-color: #6f804a;
+    }
+    .recommendation {
+      margin-top: 20px;
+      font-size: 18px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: rgba(255, 255, 255, 0.7);
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Click for Healthy Breakfast and Snack Suggestion!</h1>
+    <button onclick="getRecommendation()">Get suggestions</button>
+    <div class="recommendation" id="recommendation"></div>
+  </div>
+
+  <script>
+    const breakfastSnackRecommendations = [
+      "🥑 Avocado Toast: Sliced avocado mashed with lemon juice, salt, and pepper on whole grain bread; served with tomato slices and green tea.",
+  "🍳 Veggie Omelette: Whisked eggs cooked with diced bell peppers, tomatoes, and spinach; accompanied by oatmeal and fruit salad.",
+  "🥞 Whole Wheat Pancakes: Pancakes made with whole wheat flour, topped with fresh fruit slices and a drizzle of honey; served with yogurt.",
+  "🍌 Banana Oatmeal: Oatmeal cooked with milk or almond milk, topped with sliced bananas, a sprinkle of cinnamon, and chopped nuts; accompanied by fresh orange juice.",
+  "🥭 Smoothie Bowl: Blend of mango, banana, and coconut milk topped with granola, sliced strawberries, and chia seeds; served with green tea.",
+  "🥚 Boiled Eggs and Whole Grain Bread: Hard-boiled eggs, sliced avocado, whole grain bread, and grated carrots; accompanied by green tea or herbal tea.",
+  "🥣 Yogurt and Granola: Light yogurt topped with fresh fruit slices and a mix of granola; served with raisins or kiwi slices.",
+  "🍠 Sweet Potato Fries: Baked sweet potato wedges, grilled chicken pieces, and a mild spicy dip; served with a green smoothie.",
+  "🥗 Mediterranean Breakfast: Sautéed tomatoes, bell peppers, and onions in olive oil, cottage cheese, black olives, olive paste, and whole wheat bread; accompanied by fresh mint tea.",
+  "🥒 Fresh Veggies and Cheese: Sliced cucumber, carrots, celery, and string cheese; served with low-fat yogurt.",
+  "🥕 Carrot Cake and Flaxseeds: Slices of carrot cake, flaxseeds, and cottage cheese; served with fresh orange juice.",
+  "🍏 Apple and Almond Butter: Sliced apples with almond butter, a sprinkle of cinnamon, and raw almonds; served with honey milk.",
+  "🥦 Broccoli Omelette: Omelette with broccoli, cheese, and eggs; served with slices of whole grain bread.",
+  "🌽 Cornflakes and Milk: Oatmeal, cornflakes, almonds, and a drizzle of honey, served with milk.",
+  "🥗 Green Salad: Lettuce, arugula, parsley, and fresh mint dressed with olive oil and lemon juice; served with a slice of whole grain bread.",
+  "🍇 Dried Fruits and Peanut Butter: Dried apricots, figs, peanut butter, and walnuts; served with a glass of strained yogurt.",
+  "🍳 Chicken Omelette: Omelette with chicken, mushrooms, and eggs; served with slices of low-fat cheese.",
+  "🍍 Pineapple Smoothie: Blend of pineapple, banana, coconut milk, and grated ginger; served with a handful of almonds.",
+  "🥑 Avocado Egg Bake: Baked eggs stuffed with avocado slices and cherry tomatoes; served with slices of whole grain bread.",
+  "🧀 Cheese Platter: Assorted cheese slices (feta, cheddar, cottage cheese) and whole grain crackers; served with raisins or strawberry slices.",
+  "🍊 Orange and Hazelnuts: Sliced oranges and hazelnuts; served with cinnamon-infused milk.",
+  "🍳 Spinach Omelette: Omelette with spinach, cheese, and eggs; served with a handful of walnuts.",
+  "🍓 Almond and Blueberry Smoothie: Almond milk, blueberries, almonds, and chia seeds blended into a smoothie; served with a slice of whole grain bread.",
+  "🥓 Turkey Bacon and Rocket Toast: Whole wheat toast topped with turkey bacon, rocket leaves, and cheese; served with a bowl of natural yogurt.",
+  "🍌 Banana Chia Pudding: Chia seeds soaked in almond milk with mashed bananas; served with low-fat milk or herbal tea.",
+  "🥯 Whole Grain Bagel and Smoked Salmon: Sliced whole grain bagel topped with smoked salmon, lettuce, and sliced tomatoes; served with lemon-infused water.",
+  "🍓 Blueberry Quinoa Pudding: Blueberries, quinoa, coconut milk, and honey mixed to make a pudding; served with a handful of hazelnuts.",
+  "🥑 Guacamole and Pita Chips: Homemade guacamole served with whole wheat pita chips; served with a side of carrot sticks.",
+  "🥤 Oat Milk Smoothie and Almond Butter Toast: Oat milk smoothie with mixed berries and almond butter toast; served with a glass of fresh juice."
+];
+
+    function getRecommendation() {
+      const recommendationElement = document.getElementById('recommendation');
+      const randomIndex = Math.floor(Math.random() * breakfastSnackRecommendations.length);
+      const randomRecommendation = breakfastSnackRecommendations[randomIndex];
+      recommendationElement.textContent = randomRecommendation;
+    }
+  </script>
+</body>
+</html>
