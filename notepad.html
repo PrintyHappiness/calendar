@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Notepad</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-image: url('https://i.pinimg.com/564x/b7/c9/c3/b7c9c3126e843a19424dc278a7d25e27.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+
+    .notepad {
+      width: 320px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    textarea {
+      width: 100%;
+      height: 300px;
+      margin-bottom: 30px;
+      padding: px;
+      border: 2px solid #ccc;
+      border-radius: 5px;
+      resize: none;
+      font-size: 14px;
+      background-color: transparent;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    li {
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #eee;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.3s ease;
+      background-color: transparent;
+    }
+
+    li:hover {
+      background-color: transparent;;
+    }
+
+    button {
+      padding: 8px 16px;
+      border: none;
+      border-radius: 5px;
+      background-color: #6f804a;
+      color: white;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #4a804d;
+    }
+    
+</style>
+</head>
+<body>
+  <div class="notepad">
+    <textarea id="noteInput" placeholder="Write your note here..." onkeypress="saveNoteOnEnter(event)"></textarea>
+    <button onclick="saveNote()">Save</button>
+    <ul id="noteList"></ul>
+  </div>
+
+  <script>
+    function saveNote() {
+      const note = document.getElementById('noteInput').value.trim();
+      const noteList = document.getElementById('noteList');
+
+      if (note !== '') {
+        const li = document.createElement('li');
+        li.textContent = note;
+
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = '✕';
+        deleteButton.onclick = function() {
+          noteList.removeChild(li);
+        };
+
+        li.appendChild(deleteButton);
+        noteList.appendChild(li);
+        document.getElementById('noteInput').value = '';
+      }
+    }
+
+    function saveNoteOnEnter(event) {
+      if (event.key === 'Enter') {
+        saveNote();
+        return false; // Eğer sayfayı yenilemek istemiyorsanız false döndürün
+      }
+    }
+  </script>
+</body>
+</html>
