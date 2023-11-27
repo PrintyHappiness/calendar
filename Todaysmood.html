@@ -37,6 +37,9 @@
       display: none;
       margin-top: 20px;
       font-style: italic;
+      background-image: linear-gradient(to right, red, purple, darkgreen, blue); /* Metin rengi */
+      -webkit-background-clip: text;
+      background-clip: text;
     }
   </style>
 </head>
@@ -55,7 +58,7 @@
   <script>
     const motivationMessages = {
       'mutluluk': [
-        "Life is too short to worry about matching socks.",
+       "Life is too short to worry about matching socks.",
 "Never trust someone who doesn't like avocados.",
 "If a pigeon gives you advice, listen carefully.",
 "Always carry a banana in case of spontaneous monkey encounters.",
@@ -86,7 +89,7 @@
 "Never forget: You're someone's reason to smile, maybe a cat's."
       ],
       'kızgın': [
-        "You'll get through this tough time.",
+         "You'll get through this tough time.",
 "Everything will work out in the end.",
 "Stay calm, you're in control.",
 "Challenges reveal your strength.",
@@ -158,8 +161,42 @@
 "An emotional day can be an opportunity for inner growth.",
 "Be brave on your emotional journey; each step takes you forward.",
 "Remember, your emotions are a gift that makes you human."
+      ],
+      'üzgün': [
+        "Everything will be okay, don't lose hope.",
+    "The sun shines behind every cloud.",
+    "Take a step back, move two steps forward.",
+    "These tough moments reveal your strength.",
+    "Difficulties build new strengths within you.",
+    "This is an opportunity to showcase your resilience.",
+    "Just another obstacle on the road to success.",
+    "You have the power to solve problems.",
+    "This too shall pass.",
+    "You can overcome this.",
+    "This can't hinder your success.",
+    "Believe in yourself, you can handle anything.",
+    "Defeat is just a step towards success.",
+    "Challenges make you stronger.",
+    "There's a solution to every problem.",
+    "Take a step back, move two steps forward.",
+    "Anger is just an emotion, you're in control.",
+    "You're stronger; you can overcome this.",
+    "It's just a pause, the journey continues.",
+    "Now is the time to demonstrate your strength.",
+    "Redirect the energy of anger into a positive direction.",
+    "You always come back stronger.",
+    "Unleash the power within you.",
+    "Negativity is a step towards greater achievement.",
+    "Challenges make you a better person.",
+    "Challenges bring out your potential.",
+    "A stronger you can overcome challenges.",
+    "Failure is a path to bigger success.",
+    "Remember, facing challenges makes you stronger.",
+    "Believe in yourself, you can conquer anything."
       ]
     };
+
+    const colors = ['red', 'purple', 'darkgreen', 'blue', 'yellow', 'white']; // Mesaj renklerini burada tanımla
 
     function selectEmoji(mood, element) {
       const emojis = document.querySelectorAll('.emojis span');
@@ -175,6 +212,7 @@
       if (messages) {
         const randomIndex = Math.floor(Math.random() * messages.length);
         messageContainer.textContent = messages[randomIndex];
+        messageContainer.style.color = colors[randomIndex % colors.length]; // Renkleri sırayla atama
         messageContainer.style.display = 'block';
       }
     }
