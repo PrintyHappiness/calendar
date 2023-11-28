@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rastgele Övgüler</title>
+  <style>
+    #container {
+      text-align: center;
+      font-size: 23px;
+      margin-top: 10px;
+       color: #8b4c39;
+       
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <p id="praise"></p>
+  </div>
+
+  <script>
+    const compliments = [
+      "Today is a new chance to chase your dreams and make them a reality.",
+  "Remember, each sunrise brings new opportunities and endless possibilities.",
+  "Your positive attitude can transform the ordinary into extraordinary.",
+  "Let your smile change the world, but don't let the world change your smile.",
+  "Every day is a fresh canvas; paint it with vibrant colors and joyful moments.",
+  "Embrace the day with enthusiasm; it's your chance to shine brightly.",
+  "Believe in yourself, for you have the power to turn obstacles into stepping stones.",
+  "Today, choose happiness, for it's a decision that shapes your experience.",
+  "You are the architect of your day; build it with purpose and determination.",
+  "Each moment offers a chance for growth and self-discovery. Seize it!",
+  "Radiate positivity; your energy influences the world around you.",
+  "Embrace the challenges today brings; they are stepping stones to success.",
+  "Start your day with gratitude; it opens the door to abundance and joy.",
+  "Your potential is limitless; unleash it and conquer the day!",
+  "Let kindness be your language and love be your guide today.",
+  "Today, celebrate the beauty of life and find joy in the simplest moments.",
+  "Focus on progress, not perfection. Each step forward counts.",
+  "Your mindset shapes your reality; choose positivity and optimism.",
+  "Create your own sunshine today, and brighten someone else's day too.",
+  "You are capable of amazing things; let today be a testament to that.",
+  "Seize every opportunity that comes your way; they lead to growth.",
+  "Fill your day with purpose; let your actions reflect your dreams.",
+  "Embrace change; it's the catalyst for growth and new beginnings.",
+  "The world is full of beauty and wonder; take time to appreciate it today.",
+  "You have the power to make a difference today; use it wisely.",
+  "Challenge yourself to be better today than you were yesterday.",
+  "Embrace positivity; it's contagious and spreads happiness.",
+  "Your journey is unique; savor every moment and learn from it.",
+  "Embrace the present moment; it's where your power lies.",
+  "Today is an opportunity to create a life you love. Seize it with gusto!",
+    ];
+
+    function showRandomCompliment() {
+      const randomIndex = Math.floor(Math.random() * compliments.length);
+      document.getElementById("praise").innerText = compliments[randomIndex];
+      setTimeout(showRandomCompliment, 5000); // Her 5 saniyede bir yeni övgü göster
+    }
+
+    showRandomCompliment(); // Övgüleri göster
+  </script>
+</body>
+</html>
